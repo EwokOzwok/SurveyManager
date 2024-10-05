@@ -51,7 +51,7 @@ app_ui <- function(request) {
                   br(),
                   f7Align(h2("Step 3: Extract Non-Completers for Mail Merge"),side=c("left")),
                   br(),
-                  f7Button("generate", "Generate Mail Merge List"),
+                  hr(),
                   br(),
                   f7DownloadButton("downloadData", "Download Filtered CSV"),
                   br(),
@@ -78,7 +78,6 @@ app_ui <- function(request) {
                   br(),
                   f7Align(h2("Step 2: Sort by Gift Card Send Date"),side=c("left")),
                   br(),
-                  f7Button("sort", "Sort"),
                   hr(),
                   br(),
                   f7Select("timepoint", "Select the time-point", choice = c("Exit", "Follow-up", "6month Follow-up")),
@@ -86,7 +85,7 @@ app_ui <- function(request) {
                   f7DownloadButton("downloadData1", "Download Filtered CSV"),
                   br(),
                   br(),
-                  DTOutput("preview"),
+                  DTOutput("preview1"),
                   footer = NULL,
                   hairlines = F, strong = T, inset = F, tablet = FALSE)
               )

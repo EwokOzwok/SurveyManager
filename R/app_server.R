@@ -6,6 +6,7 @@
 #' @import shinyMobile
 #' @import dplyr
 #' @import readxl
+#' @import writexl
 #' @import DT
 #' @noRd
 app_server <- function(input, output, session) {
@@ -50,10 +51,11 @@ app_server <- function(input, output, session) {
     df <- dataset_sort()
 
     # Sort the filtered dataset by SEND_DATE, earliest to latest
-    df_filtered <- df_filtered %>%
+    df <- df %>%
       arrange(SEND_DATE)
-
-    df_filtered
+    df$SEND_DATE<-as.character(df$SEND_DATE)
+    df[is.na(df)] <- ""
+    df
   })
 
 
@@ -85,7 +87,7 @@ app_server <- function(input, output, session) {
 
 
   # Preview the filtered dataset in the app using DT
-  output$preview <- renderDT({
+  output$preview1 <- renderDT({
     req(filtered_data1())
 
     # Clean up potential NA values in the filtered data before displaying
@@ -110,23 +112,50 @@ app_server <- function(input, output, session) {
 
 
 
-  # Generate a CSV for download
-  output$downloadData <- downloadHandler(
-    filename = function() {
-      paste("CLASSROOM NON-COMPLETERS -- ", "CLASS --", input$class_code, " ", input$class_number, " - Downloaded on - ", Sys.Date(), ".csv", sep = "")
-    },
-    content = function(file) {
-      write.csv(filtered_data(), file, row.names = FALSE)
-    }
-  )
+# Generate a CSV for download
+output$downloadData <- downloadHandler(
+  filename = function() {
+    paste("CLASSROOM NON-COMPLETERS -- ", "CLASS --", input$class_code, " ", input$class_number, " - Downloaded on - ", Sys.Date(), ".csv", sep = "")
+  },
+  content = function(file) {
+    write.csv(filtered_data(), file, row.names = FALSE)
+  }
+)
 
-  output$downloadData1 <- downloadHandler(
-    filename = function() {
-      paste("Gift Card Data Sorted -- ", input$timepoint, " - Downloaded on - ", Sys.Date(), ".csv", sep = "")
-    },
-    content = function(file) {
-      write.csv(filtered_data1(), file, row.names = FALSE)
-    }
-  )
+output$downloadData1 <- downloadHandler(
+  filename = function() {
+    paste(input$timepoint, " Survey - Gift Card Data Sorted - ", " - Downloaded on - ", Sys.Date(), ".csv", sep = "")
+  },
+  content = function(file) {
+    write.csv(filtered_data1(), file, row.names = FALSE)
+  }
+)
+
+
+
+
+#
+#
+#   output$downloadData <- downloadHandler(
+#     filename = function() {
+#       paste("CLASSROOM NON-COMPLETERS -- ", "CLASS --", input$class_code, " ", input$class_number, " - Downloaded on - ", Sys.Date(), ".xlsx", sep = "")
+#     },
+#     content = function(file) {
+#       writexl::write_xlsx(filtered_data(), path = file)  # Export as .xlsx using writexl
+#     }
+#   )
+#
+#
+#
+#   output$downloadData1 <- downloadHandler(
+#     filename = function() {
+#       paste(input$timepoint, " Survey - Gift Card Data Sorted - ", " - Downloaded on - ", Sys.Date(), ".xlsx", sep = "")
+#     },
+#     content = function(file) {
+#       writexl::write_xlsx(filtered_data1(), path = file)  # Export as .xlsx using writexl
+#     }
+#   )
+
+
 
 }
