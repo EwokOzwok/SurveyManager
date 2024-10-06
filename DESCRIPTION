@@ -13,10 +13,10 @@ Imports:
     DT,
     golem (>= 0.4.1),
     htmltools,
-    pkgload,
     readxl,
     shiny (>= 1.8.1.1),
     shinyMobile,
+    tidyr,
     writexl
 Suggests: 
     testthat (>= 3.0.0)

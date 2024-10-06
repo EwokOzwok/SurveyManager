@@ -63,34 +63,34 @@ app_ui <- function(request) {
             )
           ),
 
-          f7Tab(
-            tabName = "SortTab",
-            icon = f7Icon("sort_up"),
-            active = F,
-            hidden= F,
-            f7Block(
-              f7Shadow(
-                intensity = 5,
-                hover = TRUE,
-                f7Card(
-                  f7Align(h2("Step 1: Upload the Exit or Follow-up List from GDrive"),side=c("left")),
-                  f7File("file1", "Upload XLSX File", multiple = F, accept = ".xlsx"),
-                  br(),
-                  f7Align(h2("Step 2: Sort by Gift Card Send Date"),side=c("left")),
-                  br(),
-                  hr(),
-                  br(),
-                  f7Select("timepoint", "Select the time-point", choice = c("Exit", "Follow-up", "6month Follow-up")),
-                  br(),
-                  f7DownloadButton("downloadData1", "Download Filtered CSV"),
-                  br(),
-                  br(),
-                  DTOutput("preview1"),
-                  footer = NULL,
-                  hairlines = F, strong = T, inset = F, tablet = FALSE)
-              )
-            )
-          )
+          # f7Tab(
+          #   tabName = "SortTab",
+          #   icon = f7Icon("sort_up"),
+          #   active = F,
+          #   hidden= F,
+          #   f7Block(
+          #     f7Shadow(
+          #       intensity = 5,
+          #       hover = TRUE,
+          #       f7Card(
+          #         f7Align(h2("Step 1: Upload the Exit or Follow-up List from GDrive"),side=c("left")),
+          #         f7File("file1", "Upload XLSX File", multiple = F, accept = ".csv"),
+          #         br(),
+          #         f7Align(h2("Step 2: Sort by Gift Card Send Date"),side=c("left")),
+          #         br(),
+          #         hr(),
+          #         br(),
+          #         f7Select("timepoint", "Select the time-point", choice = c("Exit", "Follow-up", "6month Follow-up")),
+          #         br(),
+          #         f7DownloadButton("downloadData1", "Download Filtered CSV"),
+          #         br(),
+          #         br(),
+          #         DTOutput("preview1"),
+          #         footer = NULL,
+          #         hairlines = F, strong = T, inset = F, tablet = FALSE)
+          #     )
+          #   )
+          # )
         )
       )
     )
