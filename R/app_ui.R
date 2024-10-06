@@ -74,7 +74,7 @@ app_ui <- function(request) {
           #       hover = TRUE,
           #       f7Card(
           #         f7Align(h2("Step 1: Upload the Exit or Follow-up List from GDrive"),side=c("left")),
-          #         f7File("file1", "Upload XLSX File", multiple = F, accept = ".csv"),
+          #         f7File("file1", "Upload XLSX File", multiple = F, accept = ".xlsx"),
           #         br(),
           #         f7Align(h2("Step 2: Sort by Gift Card Send Date"),side=c("left")),
           #         br(),

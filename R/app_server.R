@@ -90,8 +90,8 @@ output$downloadData <- downloadHandler(
 dataset_sort <- reactive({
   req(input$file1)
   # Read the uploaded file as a data frame
-  # read_excel(input$file1$datapath)
-  read.csv(input$file1$datapath, header=T, sep=",", encoding="utf-8-rom")
+  read_excel(input$file1$datapath)
+  # read.csv(input$file1$datapath, header=T, sep=",", encoding="utf-8-rom")
 })
 
 
