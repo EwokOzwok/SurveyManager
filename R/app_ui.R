@@ -28,13 +28,12 @@ app_ui <- function(request) {
         # f7Tabs is a special toolbar with included navigation
         f7Tabs(
           animated = TRUE,
-          id = "tabs",
-          swipeable = F,
+          id = "tab",
           f7Tab(
             tabName = "WelcomeTab",
             icon = f7Icon("envelope_fill"),
             active = TRUE,
-            hidden= F,
+            hidden= T,
             f7Block(
               f7Shadow(
                 intensity = 5,
@@ -61,7 +60,7 @@ app_ui <- function(request) {
                   hairlines = F, strong = T, inset = F, tablet = FALSE)
               )
             )
-          ),
+          )
 
           # f7Tab(
           #   tabName = "SortTab",
